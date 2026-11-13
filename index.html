@@ -1,952 +1,1332 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Agenda Escolar | Recursos e Espaços</title>
 
+  <style>
+    :root {
+      --blue: #2457a7;
+      --navy: #183d78;
+      --light-blue: #eaf1ff;
+      --bg: #f3f6fb;
+      --ink: #243247;
+      --muted: #68768a;
+      --line: #dce4ef;
+      --green: #18864b;
+      --green-bg: #e7f6ed;
+      --amber: #a65d00;
+      --amber-bg: #fff4df;
+      --red: #b42318;
+      --red-bg: #fff0ef;
+      --white: #ffffff;
+    }
 
-\<style>\<html lang="pt-BR">
-\<head>
-\<meta charset="UTF-8">
-\<meta name="viewport" content="width=device-width, initial-scale=1.0">
-\<title>Agenda Escolar | Recursos e Espaços\</title>
-\:root{
-&#x20; \--blue:#2457a7;
-&#x20; \--navy:#183d78;
-&#x20; \--bg:#f3f6fb;
-&#x20; \--ink:#243247;
-&#x20; \--muted:#68768a;
-&#x20; \--line:#dce4ef;
-&#x20; \--green:#18864b;
-&#x20; \--amber:#a65d00;
-&#x20; \--red:#b42318;
-&#x20; \--white:#fff;
-}
-\*{box-sizing\:border-box}
-body{margin:0;background\:var(--bg);color\:var(--ink);font:15px Arial,sans-serif}
-header{
-&#x20; background\:linear-gradient(115deg,var(--navy),var(--blue));
-&#x20; color:#fff;
-&#x20; padding:24px max(18px,calc((100% - 1180px)/2));
-}
-header h1{margin:0 0 6px;font-size:26px}
-header p{margin:0;opacity:.9}
-main{width\:min(1180px,calc(100% - 28px));margin:22px auto 40px}
-.panel,.card{
-&#x20; background:#fff;border:1px solid var(--line);border-radius:13px;
-&#x20; padding:19px;margin-bottom:17px;box-shadow:0 2px 8px #2030500a;
-}
-.topbar{display\:flex;gap:12px;align-items\:end;flex-wrap\:wrap}
-.field{flex:1 1 190px}
-label{display\:block;font-weight:700;font-size:13px;margin:0 0 6px}
-input,select,button{font\:inherit;border-radius:8px}
-input,select{
-&#x20; width:100%;border:1px solid #cbd5e1;padding:11px 12px;
-&#x20; background\:white;color\:var(--ink);
-}
-button{border:0;padding:11px 15px;cursor\:pointer;font-weight:700}
-.primary{background\:var(--blue);color:#fff}
-.primary\:hover{background\:var(--navy)}
-.secondary{background:#e9eef7;color\:var(--navy)}
-.danger{background:#fff0ef;color\:var(--red)}
-.hidden{display\:none!important}
-h2{font-size:19px;margin:0 0 14px}
-h3{font-size:16px;margin:0 0 8px}
-.muted,.help{color\:var(--muted);font-size:13px;line-height:1.5}
-.message{margin-top:12px;font-weight:700;min-height:18px}
-.resource-grid{
-&#x20; display\:grid;grid-template-columns\:repeat(auto-fit,minmax(190px,1fr));
-&#x20; gap:10px;
-}
-.resource{
-&#x20; border:1px solid var(--line);border-radius:10px;padding:13px;
-}
-.resource .qty{
-&#x20; font-size:22px;font-weight:700;color\:var(--navy);
-}
-.resource .qty small{
-&#x20; font-size:12px;color\:var(--muted);font-weight:400;
-}
-.row{
-&#x20; display\:flex;justify-content\:space-between;gap:10px;
-&#x20; align-items\:center;flex-wrap\:wrap;
-}
-.grid-form{
-&#x20; display\:grid;grid-template-columns\:repeat(2,minmax(0,1fr));
-&#x20; gap:12px;
-}
-.wide{grid-column:1/-1}
-.slots{
-&#x20; display\:grid;grid-template-columns\:repeat(auto-fit,minmax(145px,1fr));
-&#x20; gap:8px;margin-top:10px;
-}
-.slot{
-&#x20; padding:10px;border:1px solid var(--line);
-&#x20; border-radius:9px;background:#fafcff;
-}
-.slot strong{display\:block}
-.slot small{color\:var(--muted)}
-.list{display\:grid;gap:10px}
-.booking{
-&#x20; border:1px solid var(--line);border-left:5px solid var(--blue);
-&#x20; border-radius:9px;padding:13px;
-&#x20; display\:grid;grid-template-columns:1fr auto;gap:12px;
-}
-.booking p{margin:4px 0;color\:var(--muted);font-size:13px}
-.actions{
-&#x20; display\:flex;gap:7px;align-items\:center;flex-wrap\:wrap;
-}
-.actions button{padding:8px 10px;font-size:13px}
-.status{
-&#x20; display\:inline-block;border-radius:20px;padding:5px 9px;
-&#x20; font-size:12px;font-weight:700;background:#fff4df;color\:var(--amber);
-}
-.status.aprovada{background:#e7f6ed;color\:var(--green)}
-.status.cancelada,.status.recusada{background:#fff0ef;color\:var(--red)}
-.notice{
-&#x20; background:#fff8e8;border:1px solid #f0d9a8;
-&#x20; padding:12px;border-radius:9px;color:#754800;
-&#x20; font-size:13px;line-height:1.5;
-}
-@media(max-width:650px){
-&#x20; .grid-form{grid-template-columns:1fr}
-&#x20; .booking{grid-template-columns:1fr}
-&#x20; header h1{font-size:22px}
-}
-\</style>
+    * {
+      box-sizing: border-box;
+    }
 
-\</head>
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+    }
 
-\<body>
+    /* CABEÇALHO */
+    header {
+      background: linear-gradient(115deg, var(--navy), var(--blue));
+      color: white;
+      padding: 25px 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.12);
+    }
 
-\<header>
-&#x20; \<h1>Agenda de Recursos Escolares\</h1>
-&#x20; \<p>Agendamento de equipamentos e espaços da escola\</p>
-&#x20; \<button id="sairSistema" class="secondary" style="margin-top:12px">
-&#x20;   Sair / trocar usuário
-&#x20; \</button>
-\</header>
+    header h1 {
+      margin: 0 0 6px;
+      font-size: 27px;
+    }
 
-\<section class="card" id="telaEntrada" style="max-width:620px;margin:28px auto">
-&#x20; \<h2>Entrar na Agenda Escolar\</h2>
+    header p {
+      margin: 0;
+      opacity: .9;
+    }
 
-&#x20; \<div class="field" style="margin-bottom:14px">
-&#x20;   \<label for="tipoEntrada">Como deseja entrar?\</label>
-&#x20;   \<select id="tipoEntrada">
-&#x20;     \<option value="professor">Professor(a)\</option>
-&#x20;     \<option value="funcionario">Funcionário(a) / Direção\</option>
-&#x20;   \</select>
-&#x20; \</div>
+    /* CONTEÚDO */
+    main {
+      width: min(1180px, calc(100% - 28px));
+      margin: 22px auto 40px;
+    }
 
-&#x20; \<form id="formEntrada">
-&#x20;   \<div class="field" style="margin-bottom:14px">
-&#x20;     \<label for="nomeEntrada">Nome\</label>
-&#x20;     \<input id="nomeEntrada" placeholder="Digite seu nome" required>
-&#x20;   \</div>
+    .card,
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 3px 12px rgba(30, 55, 90, .06);
+    }
 
-```
-<button class="primary" type="submit">Entrar</button>
-<div class="message" id="erroEntrada"></div>
-```
+    h2 {
+      margin: 0 0 15px;
+      color: var(--navy);
+      font-size: 20px;
+    }
 
-&#x20; \</form>
+    h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
 
-&#x20; \<p class="help">
-&#x20;   Informe apenas seu nome para acessar o sistema.
-&#x20; \</p>
-\</section>
+    /* FORMULÁRIOS */
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      font-weight: bold;
+    }
 
-\<main id="sistema" class="hidden">
+    input,
+    select {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: white;
+      color: var(--ink);
+      outline: none;
+      transition: border .2s, box-shadow .2s;
+    }
 
-\<section class="panel">
-&#x20; \<div class="topbar">
-&#x20;   \<div class="field">
-&#x20;     \<label for="perfil">Acessar como\</label>
-&#x20;     \<select id="perfil">
-&#x20;       \<option value="professor">Professor(a)\</option>
-&#x20;       \<option value="funcionario">Funcionário(a) / Direção\</option>
-&#x20;     \</select>
-&#x20;   \</div>
+    input:focus,
+    select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(36, 87, 167, .12);
+    }
 
-```
-<div class="field">
-  <label for="nomeUsuario">Nome</label>
-  <input id="nomeUsuario" placeholder="Digite seu nome">
-</div>
-```
+    button {
+      border: none;
+      border-radius: 8px;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform .15s, opacity .15s;
+    }
 
-&#x20; \</div>
+    button:hover {
+      opacity: .92;
+    }
 
-&#x20; \<p class="help">
-&#x20;   Não é necessário informar senha ou e-mail.
-&#x20; \</p>
-\</section>
+    button:active {
+      transform: scale(.98);
+    }
 
-\<section class="card">
-&#x20; \<h2>Disponibilidade dos recursos\</h2>
-&#x20; \<div class="resource-grid" id="painelRecursos">\</div>
-\</section>
+    .primary {
+      background: var(--blue);
+      color: white;
+    }
 
-\<section class="card" id="areaReserva">
-&#x20; \<h2>Solicitar agendamento\</h2>
+    .secondary {
+      background: #e9eef7;
+      color: var(--navy);
+    }
 
-&#x20; \<form id="formReserva">
-&#x20;   \<div class="grid-form">
+    .danger {
+      background: var(--red-bg);
+      color: var(--red);
+    }
 
-```
-  <div>
-    <label for="recurso">Recurso ou espaço</label>
-    <select id="recurso" required></select>
-  </div>
+    .hidden {
+      display: none !important;
+    }
 
-  <div>
-    <label for="quantidade">Quantidade</label>
-    <input id="quantidade" type="number" min="1" value="1" required>
-  </div>
+    .field {
+      flex: 1 1 190px;
+    }
 
-  <div>
-    <label for="data">Data</label>
-    <input id="data" type="date" required>
-  </div>
+    .topbar {
+      display: flex;
+      gap: 12px;
+      align-items: end;
+      flex-wrap: wrap;
+    }
 
-  <div>
-    <label for="aula">Aula / horário</label>
-    <select id="aula" required></select>
-  </div>
+    .grid-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
 
-  <div>
-    <label for="turma">Turma</label>
-    <select id="turma" required>
-      <option value="">Selecione a turma</option>
-      <option>1 ADM</option>
-      <option>1 TDS</option>
-      <option>2 ADM</option>
-      <option>2 JOGOS</option>
-      <option>3 INTEGRAL</option>
-      <option>3 MARKETING</option>
-    </select>
-  </div>
+    .wide {
+      grid-column: 1 / -1;
+    }
 
-  <div>
-    <label for="observacao">Finalidade / observação</label>
-    <input id="observacao" placeholder="Descreva brevemente">
-  </div>
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
 
-  <div class="wide">
-    <button class="primary" type="submit">
-      Enviar solicitação
+    .muted,
+    .help {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .message {
+      margin-top: 12px;
+      min-height: 20px;
+      font-weight: bold;
+    }
+
+    /* RECURSOS */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+    }
+
+    .resource {
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 14px;
+      background: #fafcff;
+    }
+
+    .resource .qty {
+      margin-top: 8px;
+      font-size: 25px;
+      font-weight: bold;
+      color: var(--navy);
+    }
+
+    .resource .qty small {
+      font-size: 12px;
+      font-weight: normal;
+      color: var(--muted);
+    }
+
+    /* AGENDAMENTOS */
+    .list {
+      display: grid;
+      gap: 11px;
+    }
+
+    .booking {
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--blue);
+      border-radius: 10px;
+      padding: 14px;
+      background: white;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 15px;
+    }
+
+    .booking p {
+      margin: 5px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .actions button {
+      padding: 8px 11px;
+      font-size: 13px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 20px;
+      background: var(--amber-bg);
+      color: var(--amber);
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .status.aprovada {
+      background: var(--green-bg);
+      color: var(--green);
+    }
+
+    .status.recusada,
+    .status.cancelada {
+      background: var(--red-bg);
+      color: var(--red);
+    }
+
+    /* MANUTENÇÃO */
+    .notice {
+      background: #fff8e8;
+      border: 1px solid #f0d9a8;
+      border-radius: 9px;
+      padding: 12px;
+      color: #754800;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* HORÁRIOS */
+    .slots {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 9px;
+    }
+
+    .slot {
+      padding: 11px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: #fafcff;
+    }
+
+    .slot strong {
+      display: block;
+    }
+
+    .slot small {
+      color: var(--muted);
+    }
+
+    /* TELA DE ENTRADA */
+    #telaEntrada {
+      max-width: 620px;
+      margin: 35px auto;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 650px) {
+      .grid-form {
+        grid-template-columns: 1fr;
+      }
+
+      .booking {
+        grid-template-columns: 1fr;
+      }
+
+      .actions {
+        justify-content: flex-start;
+      }
+
+      header h1 {
+        font-size: 22px;
+      }
+
+      main {
+        width: calc(100% - 20px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Agenda de Recursos Escolares</h1>
+    <p>Agendamento de equipamentos e espaços da escola</p>
+
+    <button id="sairSistema" class="secondary" style="margin-top:12px">
+      Sair / trocar usuário
     </button>
-    <div class="message" id="mensagem"></div>
-  </div>
-
-</div>
-```
-
-&#x20; \</form>
-\</section>
-
-\<section class="card">
-&#x20; \<div class="row">
-&#x20;   \<h2 id="tituloLista">Meus agendamentos\</h2>
-
-```
-<div class="field" style="max-width:190px">
-  <label for="filtroData">Filtrar por data</label>
-  <input id="filtroData" type="date">
-</div>
-```
-
-&#x20; \</div>
-
-&#x20; \<div class="list" id="listaReservas">\</div>
-\</section>
-
-\<section class="card hidden" id="areaDirecao">
-&#x20; \<h2>Controle de manutenção\</h2>
-
-&#x20; \<div class="notice">
-&#x20;   Registre equipamentos quebrados ou reparados para manter a
-&#x20;   disponibilidade atualizada.
-&#x20; \</div>
-
-&#x20; \<form id="formManutencao" style="margin-top:14px">
-&#x20;   \<div class="grid-form">
-
-```
-  <div>
-    <label for="recursoManutencao">Equipamento / espaço</label>
-    <select id="recursoManutencao"></select>
-  </div>
-
-  <div>
-    <label for="acaoManutencao">Ação</label>
-    <select id="acaoManutencao">
-      <option value="quebrado">Registrar item quebrado</option>
-      <option value="reparado">Registrar item consertado</option>
-    </select>
-  </div>
-
-  <div>
-    <label for="qtdManutencao">Quantidade</label>
-    <input id="qtdManutencao" type="number" min="1" value="1" required>
-  </div>
-
-  <div>
-    <label for="motivoManutencao">Motivo</label>
-    <input id="motivoManutencao"
-      placeholder="Ex.: tablet com tela quebrada" required>
-  </div>
-
-  <div class="wide">
-    <button class="primary" type="submit">
-      Registrar manutenção
-    </button>
-    <div class="message" id="msgManutencao"></div>
-  </div>
-
-</div>
-```
-
-&#x20; \</form>
-
-&#x20; \<h3 style="margin-top:20px">Histórico de manutenção\</h3>
-&#x20; \<div id="historicoManutencao" class="list">\</div>
-\</section>
-
-\<section class="card">
-&#x20; \<h2>Horários de funcionamento\</h2>
-&#x20; \<div class="slots" id="quadroAulas">\</div>
-\</section>
-
-\</main>
-
-\<script>
-const INVENTARIO = {
-&#x20; "Tablet": 5,
-&#x20; "Datashow": 4,
-&#x20; "Caixa de som": 4,
-&#x20; "Notebook": 2,
-&#x20; "Laboratório de informática": 1,
-&#x20; "Biblioteca": 1,
-&#x20; "Quadra": 1
-};
-
-const AULAS = [
-&#x20; {nome:"1ª aula",inicio:"07:00",fim:"08:00"},
-&#x20; {nome:"2ª aula",inicio:"08:00",fim:"09:00"},
-&#x20; {nome:"3ª aula",inicio:"09:20",fim:"10:20"},
-&#x20; {nome:"4ª aula",inicio:"10:20",fim:"11:20"},
-&#x20; {nome:"5ª aula",inicio:"11:20",fim:"12:20"},
-&#x20; {nome:"6ª aula",inicio:"13:00",fim:"14:00"},
-&#x20; {nome:"7ª aula",inicio:"14:00",fim:"15:00"},
-&#x20; {nome:"8ª aula",inicio:"15:00",fim:"16:00"}
-];
-
-const API_URL =
-"[https://script.google.com/a/macros/aluno.edu.pi.gov.br/s/AKfycby0CD3gkeM9qVuZIbSerPIGNMfvX8mcR3_QNQl24iG30Ga-kAvXQlhjjq0FmVTvhqsSVA/exec](https://script.google.com/a/macros/aluno.edu.pi.gov.br/s/AKfycby0CD3gkeM9qVuZIbSerPIGNMfvX8mcR3_QNQl24iG30Ga-kAvXQlhjjq0FmVTvhqsSVA/exec)";
-
-let reservasRemotas = [];
-let manutencoesRemotas = [];
-let requisicaoPendente = false;
-
-const $ = id => document.getElementById(id);
-
-function esc(valor) {
-&#x20; return String(valor ?? "").replace(/[&<>"']/g, c => ({
-&#x20;   "&":"&amp;",
-&#x20;   "<":"&lt;",
-&#x20;   ">":"&gt;",
-&#x20;   '"':"&quot;",
-&#x20;   "'":"&#039;"
-&#x20; })[c]);
-}
-
-/\* CONSULTA OS DADOS \*/
-function apiGet(params = {}) {
-&#x20; return new Promise((resolve, reject) => {
-&#x20;   const callback =
-&#x20;     "agendaCallback\_" + Date.now() + "\_" +
-&#x20;     Math.floor(Math.random() \* 100000);
-
-&#x20;   const script = document.createElement("script");
-&#x20;   let finalizado = false;
-
-&#x20;   const timer = setTimeout(() => {
-&#x20;     finalizar(new Error("Tempo esgotado ao consultar o servidor."));
-&#x20;   }, 15000);
-
-&#x20;   function finalizar(erro, dados) {
-&#x20;     if (finalizado) return;
-&#x20;     finalizado = true;
-&#x20;     clearTimeout(timer);
-&#x20;     delete window[callback];
-&#x20;     script.remove();
-
-&#x20;     if (erro) reject(erro);
-&#x20;     else resolve(dados);
-&#x20;   }
-
-&#x20;   window[callback] = dados => finalizar(null, dados);
-
-&#x20;   script.onerror = () =>
-&#x20;     finalizar(new Error("Não foi possível conectar ao Apps Script."));
-
-&#x20;   const query = new URLSearchParams({
-&#x20;     ...params,
-&#x20;     callback,
-&#x20;     \_: Date.now()
-&#x20;   });
-
-&#x20;   script.src = API_URL + "?" + query.toString();
-&#x20;   document.body.appendChild(script);
-&#x20; });
-}
-
-/\* ENVIA DADOS \*/
-async function apiPost(payload) {
-&#x20; if (requisicaoPendente) {
-&#x20;   throw new Error("Aguarde a operação anterior terminar.");
-&#x20; }
-
-&#x20; requisicaoPendente = true;
-
-&#x20; const requestId =
-&#x20;   crypto.randomUUID
-&#x20;     ? crypto.randomUUID()
-&#x20;     : Date.now() + "\_" + Math.random();
-
-&#x20; try {
-&#x20;   const dados = new URLSearchParams();
-&#x20;   dados.set("payload", JSON.stringify({
-&#x20;     ...payload,
-&#x20;     requestId
-&#x20;   }));
-
-&#x20;   await fetch(API_URL, {
-&#x20;     method: "POST",
-&#x20;     mode: "no-cors",
-&#x20;     body: dados
-&#x20;   });
-
-&#x20;   for (let tentativa = 0; tentativa < 15; tentativa++) {
-&#x20;     await new Promise(resolve => setTimeout(resolve, 700));
-
-&#x20;     const resposta = await apiGet({
-&#x20;       action: "consultarresultado",
-&#x20;       id: requestId
-&#x20;     });
-
-&#x20;     if (resposta && !resposta.aguardando) {
-&#x20;       if (resposta.ok === false) {
-&#x20;         throw new Error(
-&#x20;           resposta.error || "A operação não foi concluída."
-&#x20;         );
-&#x20;       }
-&#x20;       return resposta;
-&#x20;     }
-&#x20;   }
-
-&#x20;   throw new Error(
-&#x20;     "O servidor demorou para confirmar a operação."
-&#x20;   );
-
-&#x20; } finally {
-&#x20;   requisicaoPendente = false;
-&#x20; }
-}
-
-async function carregarDados() {
-&#x20; try {
-&#x20;   const dados = await apiGet({action:"listar"});
-
-&#x20;   if (!dados || dados.ok === false) {
-&#x20;     throw new Error(
-&#x20;       dados?.error || "Não foi possível carregar os dados."
-&#x20;     );
-&#x20;   }
-
-&#x20;   reservasRemotas =
-&#x20;     Array.isArray(dados.reservas) ? dados.reservas : [];
-
-&#x20;   manutencoesRemotas =
-&#x20;     Array.isArray(dados.manutencoes) ? dados.manutencoes : [];
-
-&#x20;   atualizar();
-
-&#x20; } catch (erro) {
-&#x20;   console.error(erro);
-&#x20; }
-}
-
-function quebrados() {
-&#x20; const resultado = {};
-
-&#x20; Object.keys(INVENTARIO).forEach(
-&#x20;   recurso => resultado[recurso] = 0
-&#x20; );
-
-&#x20; manutencoesRemotas.forEach(m => {
-&#x20;   if (!(m.recurso in resultado)) return;
-
-&#x20;   resultado[m.recurso] +=
-&#x20;     m.acao === "quebrado"
-&#x20;       ? Number(m.quantidade || 0)
-&#x20;       : -Number(m.quantidade || 0);
-&#x20; });
-
-&#x20; Object.keys(resultado).forEach(recurso => {
-&#x20;   resultado[recurso] = Math.max(
-&#x20;     0,
-&#x20;     Math.min(
-&#x20;       INVENTARIO[recurso],
-&#x20;       resultado[recurso]
-&#x20;     )
-&#x20;   );
-&#x20; });
-
-&#x20; return resultado;
-}
-
-function popularSelects() {
-&#x20; $("recurso").innerHTML =
-&#x20;   '\<option value="">Selecione\</option>' +
-&#x20;   Object.keys(INVENTARIO)
-&#x20;     .map(r => \`\<option value="${esc(r)}">${esc(r)}\</option>\`)
-&#x20;     .join("");
-
-&#x20; $("recursoManutencao").innerHTML =
-&#x20;   Object.keys(INVENTARIO)
-&#x20;     .map(r => \`\<option value="${esc(r)}">${esc(r)}\</option>\`)
-&#x20;     .join("");
-
-&#x20; $("aula").innerHTML =
-&#x20;   '\<option value="">Selecione\</option>' +
-&#x20;   AULAS.map((a, i) =>
-&#x20;     \`\<option value="${i}">${a.nome} — ${a.inicio} às ${a.fim}\</option>\`
-&#x20;   ).join("");
-
-&#x20; $("quadroAulas").innerHTML =
-&#x20;   AULAS.map(a =>
-&#x20;     \`\<div class="slot">
-&#x20;       \<strong>${a.nome}\</strong>
-&#x20;       \<small>${a.inicio} às ${a.fim}\</small>
-&#x20;     \</div>\`
-&#x20;   ).join("");
-}
-
-function atualizarRecursos() {
-&#x20; const b = quebrados();
-
-&#x20; $("painelRecursos").innerHTML =
-&#x20;   Object.keys(INVENTARIO).map(recurso => \`
-&#x20;     \<div class="resource">
-&#x20;       \<strong>${esc(recurso)}\</strong>
-&#x20;       \<div class="qty">
-&#x20;         ${INVENTARIO[recurso] - b[recurso]}
-&#x20;         \<small>disponível\</small>
-&#x20;       \</div>
-&#x20;       \<div class="muted">
-&#x20;         ${b[recurso]} em manutenção
-&#x20;       \</div>
-&#x20;     \</div>
-&#x20;   \`).join("");
-}
-
-function atualizar() {
-&#x20; const funcionario =
-&#x20;   $("perfil").value === "funcionario";
-
-&#x20; const nome =
-&#x20;   $("nomeUsuario").value.trim();
-
-&#x20; $("areaReserva").classList.toggle(
-&#x20;   "hidden",
-&#x20;   funcionario
-&#x20; );
-
-&#x20; $("areaDirecao").classList.toggle(
-&#x20;   "hidden",
-&#x20;   !funcionario
-&#x20; );
-
-&#x20; $("tituloLista").textContent =
-&#x20;   funcionario
-&#x20;     ? "Monitoramento de agendamentos"
-&#x20;     : "Meus agendamentos";
-
-&#x20; let reservas =
-&#x20;   reservasRemotas.slice();
-
-&#x20; const filtro =
-&#x20;   $("filtroData").value;
-
-&#x20; if (filtro) {
-&#x20;   reservas =
-&#x20;     reservas.filter(r => r.data === filtro);
-&#x20; }
-
-&#x20; if (!funcionario) {
-&#x20;   reservas =
-&#x20;     reservas.filter(r =>
-&#x20;       String(r.professor || "")
-&#x20;         .toLowerCase() ===
-&#x20;       nome.toLowerCase()
-&#x20;     );
-&#x20; }
-
-&#x20; reservas.sort((a, b) =>
-&#x20;   String(a.data + a.inicio)
-&#x20;     .localeCompare(String(b.data + b.inicio))
-&#x20; );
-
-&#x20; if (!reservas.length) {
-&#x20;   $("listaReservas").innerHTML =
-&#x20;     '\<p class="muted">Nenhum agendamento encontrado.\</p>';
-&#x20; } else {
-&#x20;   $("listaReservas").innerHTML =
-&#x20;     reservas.map(r => {
-&#x20;       const aula =
-&#x20;         AULAS[Number(r.aula)] ||
-&#x20;         {nome:"Aula",inicio\:r.inicio || "",fim:""};
-
-&#x20;       const status =
-&#x20;         String(r.status || "Pendente");
-
-&#x20;       const classe =
-&#x20;         status.toLowerCase();
-
-&#x20;       let botoes = "";
-
-&#x20;       if (funcionario && status === "Pendente") {
-&#x20;         botoes += \`
-&#x20;           \<button class="primary"
-&#x20;             onclick="statusReserva('${r.id}','Aprovada')">
-&#x20;             Aprovar
-&#x20;           \</button>
-&#x20;           \<button class="danger"
-&#x20;             onclick="statusReserva('${r.id}','Recusada')">
-&#x20;             Recusar
-&#x20;           \</button>
-&#x20;         \`;
-&#x20;       }
-
-&#x20;       if (
-&#x20;         !funcionario &&
-&#x20;         status === "Pendente" &&
-&#x20;         String(r.professor || "").toLowerCase() ===
-&#x20;         nome.toLowerCase()
-&#x20;       ) {
-&#x20;         botoes += \`
-&#x20;           \<button class="danger"
-&#x20;             onclick="cancelarReserva('${r.id}')">
-&#x20;             Cancelar
-&#x20;           \</button>
-&#x20;         \`;
-&#x20;       }
-
-&#x20;       if (
-&#x20;         funcionario &&
-&#x20;         ["Pendente","Aprovada"].includes(status)
-&#x20;       ) {
-&#x20;         botoes += \`
-&#x20;           \<button class="secondary"
-&#x20;             onclick="statusReserva('${r.id}','Cancelada')">
-&#x20;             Cancelar
-&#x20;           \</button>
-&#x20;         \`;
-&#x20;       }
-
-&#x20;       return \`
-&#x20;         \<article class="booking">
-&#x20;           \<div>
-&#x20;             \<h3>
-&#x20;               ${esc(r.recurso)} —
-&#x20;               ${esc(String(r.data || "")
-&#x20;                 .split("-").reverse().join("/"))}
-&#x20;             \</h3>
-&#x20;             \<p>
-&#x20;               \<b>Horário:\</b>
-&#x20;               ${aula.nome}, ${aula.inicio} às ${aula.fim}
-&#x20;               · \<b>Quantidade:\</b> ${Number(r.quantidade) || 0}
-&#x20;             \</p>
-&#x20;             \<p>
-&#x20;               \<b>Turma:\</b> ${esc(r.turma || "")}
-&#x20;               · \<b>Professor(a):\</b>
-&#x20;               ${esc(r.professor || "")}
-&#x20;             \</p>
-&#x20;           \</div>
-
-&#x20;           \<div class="actions">
-&#x20;             \<span class="status ${classe}">
-&#x20;               ${esc(status)}
-&#x20;             \</span>
-&#x20;             ${botoes}
-&#x20;           \</div>
-&#x20;         \</article>
-&#x20;       \`;
-&#x20;     }).join("");
-&#x20; }
-
-&#x20; if (funcionario) {
-&#x20;   const historico =
-&#x20;     manutencoesRemotas.slice()
-&#x20;       .sort((a,b) =>
-&#x20;         String(b.quando || "")
-&#x20;           .localeCompare(String(a.quando || ""))
-&#x20;       );
-
-&#x20;   $("historicoManutencao").innerHTML =
-&#x20;     historico.length
-&#x20;       ? historico.map(m => \`
-&#x20;           \<div class="booking">
-&#x20;             \<div>
-&#x20;               \<b>${esc(m.recurso)}\</b>
-&#x20;               \<p>
-&#x20;                 ${esc(m.acao)} ·
-&#x20;                 ${Number(m.quantidade) || 0} unidade(s)
-&#x20;               \</p>
-&#x20;               \<p>${esc(m.motivo || "")}\</p>
-&#x20;               \<p>
-&#x20;                 Responsável:
-&#x20;                 ${esc(m.responsavel || "")}
-&#x20;               \</p>
-&#x20;             \</div>
-&#x20;           \</div>
-&#x20;         \`).join("")
-&#x20;       : '\<p class="muted">Nenhum registro de manutenção.\</p>';
-&#x20; }
-
-&#x20; atualizarRecursos();
-}
-
-async function statusReserva(id, status) {
-&#x20; try {
-&#x20;   await apiPost({
-&#x20;     action: "alterarStatus",
-&#x20;     id,
-&#x20;     status
-&#x20;   });
-
-&#x20;   await carregarDados();
-
-&#x20; } catch (erro) {
-&#x20;   alert(erro.message);
-&#x20; }
-}
-
-async function cancelarReserva(id) {
-&#x20; const professor =
-&#x20;   $("nomeUsuario").value.trim();
-
-&#x20; try {
-&#x20;   await apiPost({
-&#x20;     action: "cancelarReserva",
-&#x20;     id,
-&#x20;     professor
-&#x20;   });
-
-&#x20;   await carregarDados();
-
-&#x20; } catch (erro) {
-&#x20;   alert(erro.message);
-&#x20; }
-}
-
-$("formReserva").addEventListener(
-&#x20; "submit",
-&#x20; async e => {
-&#x20;   e.preventDefault();
-
-&#x20;   const professor =
-&#x20;     $("nomeUsuario").value.trim();
-
-&#x20;   const recurso =
-&#x20;     $("recurso").value;
-
-&#x20;   const data =
-&#x20;     $("data").value;
-
-&#x20;   const aula =
-&#x20;     Number($("aula").value);
-
-&#x20;   const quantidade =
-&#x20;     Number($("quantidade").value);
-
-&#x20;   const mensagem =
-&#x20;     $("mensagem");
-
-&#x20;   mensagem.textContent = "";
-
-&#x20;   if (!professor) {
-&#x20;     mensagem.textContent =
-&#x20;       "Informe seu nome.";
-&#x20;     return;
-&#x20;   }
-
-&#x20;   if (!recurso || !data || !AULAS[aula]) {
-&#x20;     mensagem.textContent =
-&#x20;       "Preencha todos os campos obrigatórios.";
-&#x20;     return;
-&#x20;   }
-
-&#x20;   const reserva = {
-&#x20;     id: crypto.randomUUID
-&#x20;       ? crypto.randomUUID()
-&#x20;       : String(Date.now()),
-
-&#x20;     professor,
-&#x20;     recurso,
-&#x20;     data,
-&#x20;     aula,
-&#x20;     inicio: AULAS[aula].inicio,
-&#x20;     quantidade,
-&#x20;     turma: $("turma").value,
-&#x20;     observacao: $("observacao").value.trim(),
-&#x20;     criado: new Date().toISOString()
-&#x20;   };
-
-&#x20;   try {
-&#x20;     mensagem.textContent =
-&#x20;       "Enviando solicitação...";
-
-&#x20;     await apiPost({
-&#x20;       action: "criarReserva",
-&#x20;       reserva
-&#x20;     });
-
-&#x20;     $("formReserva").reset();
-&#x20;     $("quantidade").value = 1;
-
-&#x20;     mensagem.textContent =
-&#x20;       "Solicitação enviada com sucesso.";
-
-&#x20;     await carregarDados();
-
-&#x20;   } catch (erro) {
-&#x20;     mensagem.textContent =
-&#x20;       erro.message;
-&#x20;   }
-&#x20; }
-);
-
-$("formManutencao").addEventListener(
-&#x20; "submit",
-&#x20; async e => {
-&#x20;   e.preventDefault();
-
-&#x20;   const manutencao = {
-&#x20;     id: String(Date.now()),
-&#x20;     recurso: $("recursoManutencao").value,
-&#x20;     acao: $("acaoManutencao").value,
-&#x20;     quantidade: Number($("qtdManutencao").value),
-&#x20;     motivo: $("motivoManutencao").value.trim(),
-&#x20;     responsavel:
-&#x20;       $("nomeUsuario").value.trim() ||
-&#x20;       "Funcionário",
-&#x20;     quando: new Date().toISOString()
-&#x20;   };
-
-&#x20;   const mensagem =
-&#x20;     $("msgManutencao");
-
-&#x20;   try {
-&#x20;     mensagem.textContent =
-&#x20;       "Registrando...";
-
-&#x20;     await apiPost({
-&#x20;       action: "registrarManutencao",
-&#x20;       manutencao
-&#x20;     });
-
-&#x20;     $("formManutencao").reset();
-&#x20;     $("qtdManutencao").value = 1;
-
-&#x20;     mensagem.textContent =
-&#x20;       "Manutenção registrada.";
-
-&#x20;     await carregarDados();
-
-&#x20;   } catch (erro) {
-&#x20;     mensagem.textContent =
-&#x20;       erro.message;
-&#x20;   }
-&#x20; }
-);
-
-$("formEntrada").addEventListener(
-&#x20; "submit",
-&#x20; e => {
-&#x20;   e.preventDefault();
-
-&#x20;   const nome =
-&#x20;     $("nomeEntrada").value.trim();
-
-&#x20;   if (!nome) {
-&#x20;     $("erroEntrada").textContent =
-&#x20;       "Informe seu nome.";
-&#x20;     return;
-&#x20;   }
-
-&#x20;   $("perfil").value =
-&#x20;     $("tipoEntrada").value;
-
-&#x20;   $("nomeUsuario").value =
-&#x20;     nome;
-
-&#x20;   $("telaEntrada").classList.add(
-&#x20;     "hidden"
-&#x20;   );
-
-&#x20;   $("sistema").classList.remove(
-&#x20;     "hidden"
-&#x20;   );
-
-&#x20;   atualizar();
-&#x20; }
-);
-
-$("sairSistema").addEventListener(
-&#x20; "click",
-&#x20; () => {
-&#x20;   $("nomeUsuario").value = "";
-&#x20;   $("nomeEntrada").value = "";
-
-&#x20;   $("sistema").classList.add(
-&#x20;     "hidden"
-&#x20;   );
-
-&#x20;   $("telaEntrada").classList.remove(
-&#x20;     "hidden"
-&#x20;   );
-
-&#x20;   $("tipoEntrada").value =
-&#x20;     "professor";
-
-&#x20;   atualizar();
-&#x20; }
-);
-
-$("perfil").addEventListener(
-&#x20; "change",
-&#x20; atualizar
-);
-
-$("nomeUsuario").addEventListener(
-&#x20; "input",
-&#x20; atualizar
-);
-
-$("filtroData").addEventListener(
-&#x20; "change",
-&#x20; atualizar
-);
-
-popularSelects();
-atualizar();
-carregarDados();
-
-setInterval(
-&#x20; carregarDados,
-&#x20; 30000
-);
-\</script>
-
-\</body>
-\</html>
+  </header>
+
+  <section class="card" id="telaEntrada">
+    <h2>Entrar na Agenda Escolar</h2>
+
+    <div class="field" style="margin-bottom:14px">
+      <label for="tipoEntrada">Como deseja entrar?</label>
+
+      <select id="tipoEntrada">
+        <option value="professor">Professor(a)</option>
+        <option value="funcionario">Funcionário(a) / Direção</option>
+      </select>
+    </div>
+
+    <form id="formEntrada">
+      <div class="field" style="margin-bottom:14px">
+        <label for="nomeEntrada">Nome</label>
+
+        <input
+          id="nomeEntrada"
+          type="text"
+          placeholder="Digite seu nome"
+          required
+        >
+      </div>
+
+      <button class="primary" type="submit">
+        Entrar
+      </button>
+
+      <div class="message" id="erroEntrada"></div>
+    </form>
+
+    <p class="help">
+      Informe apenas seu nome para acessar o sistema.
+    </p>
+  </section>
+
+  <main id="sistema" class="hidden">
+
+    <section class="panel">
+      <div class="topbar">
+
+        <div class="field">
+          <label for="perfil">Acessar como</label>
+
+          <select id="perfil">
+            <option value="professor">Professor(a)</option>
+            <option value="funcionario">Funcionário(a) / Direção</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="nomeUsuario">Nome</label>
+
+          <input
+            id="nomeUsuario"
+            type="text"
+            placeholder="Digite seu nome"
+          >
+        </div>
+
+      </div>
+
+      <p class="help">
+        Não é necessário informar senha ou e-mail.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Disponibilidade dos recursos</h2>
+      <div class="resource-grid" id="painelRecursos"></div>
+    </section>
+
+    <section class="card" id="areaReserva">
+      <h2>Solicitar agendamento</h2>
+
+      <form id="formReserva">
+
+        <div class="grid-form">
+
+          <div>
+            <label for="recurso">Recurso ou espaço</label>
+            <select id="recurso" required></select>
+          </div>
+
+          <div>
+            <label for="quantidade">Quantidade</label>
+
+            <input
+              id="quantidade"
+              type="number"
+              min="1"
+              value="1"
+              required
+            >
+          </div>
+
+          <div>
+            <label for="data">Data</label>
+            <input id="data" type="date" required>
+          </div>
+
+          <div>
+            <label for="aula">Aula / horário</label>
+            <select id="aula" required></select>
+          </div>
+
+          <div>
+            <label for="turma">Turma</label>
+
+            <select id="turma" required>
+              <option value="">Selecione a turma</option>
+              <option>1 ADM</option>
+              <option>1 TDS</option>
+              <option>2 ADM</option>
+              <option>2 JOGOS</option>
+              <option>3 INTEGRAL</option>
+              <option>3 MARKETING</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="observacao">Finalidade / observação</label>
+
+            <input
+              id="observacao"
+              type="text"
+              placeholder="Descreva brevemente"
+            >
+          </div>
+
+          <div class="wide">
+            <button class="primary" type="submit">
+              Enviar solicitação
+            </button>
+
+            <div class="message" id="mensagem"></div>
+          </div>
+
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="row">
+        <h2 id="tituloLista">Meus agendamentos</h2>
+
+        <div class="field" style="max-width:190px">
+          <label for="filtroData">Filtrar por data</label>
+          <input id="filtroData" type="date">
+        </div>
+      </div>
+
+      <div class="list" id="listaReservas"></div>
+    </section>
+
+    <section class="card hidden" id="areaDirecao">
+      <h2>Controle de manutenção</h2>
+
+      <div class="notice">
+        Registre equipamentos quebrados ou reparados para manter
+        a disponibilidade atualizada.
+      </div>
+
+      <form id="formManutencao" style="margin-top:14px">
+
+        <div class="grid-form">
+
+          <div>
+            <label for="recursoManutencao">
+              Equipamento / espaço
+            </label>
+
+            <select id="recursoManutencao"></select>
+          </div>
+
+          <div>
+            <label for="acaoManutencao">Ação</label>
+
+            <select id="acaoManutencao">
+              <option value="quebrado">
+                Registrar item quebrado
+              </option>
+
+              <option value="reparado">
+                Registrar item consertado
+              </option>
+            </select>
+          </div>
+
+          <div>
+            <label for="qtdManutencao">Quantidade</label>
+
+            <input
+              id="qtdManutencao"
+              type="number"
+              min="1"
+              value="1"
+              required
+            >
+          </div>
+
+          <div>
+            <label for="motivoManutencao">Motivo</label>
+
+            <input
+              id="motivoManutencao"
+              type="text"
+              placeholder="Ex.: tablet com tela quebrada"
+              required
+            >
+          </div>
+
+          <div class="wide">
+            <button class="primary" type="submit">
+              Registrar manutenção
+            </button>
+
+            <div class="message" id="msgManutencao"></div>
+          </div>
+
+        </div>
+      </form>
+
+      <h3 style="margin-top:22px">
+        Histórico de manutenção
+      </h3>
+
+      <div id="historicoManutencao" class="list"></div>
+    </section>
+
+    <section class="card">
+      <h2>Horários de funcionamento</h2>
+      <div class="slots" id="quadroAulas"></div>
+    </section>
+
+  </main>
+
+  <script>
+    const INVENTARIO = {
+      "Tablet": 5,
+      "Datashow": 4,
+      "Caixa de som": 4,
+      "Notebook": 2,
+      "Laboratório de informática": 1,
+      "Biblioteca": 1,
+      "Quadra": 1
+    };
+
+    const AULAS = [
+      { nome: "1ª aula", inicio: "07:00", fim: "08:00" },
+      { nome: "2ª aula", inicio: "08:00", fim: "09:00" },
+      { nome: "3ª aula", inicio: "09:20", fim: "10:20" },
+      { nome: "4ª aula", inicio: "10:20", fim: "11:20" },
+      { nome: "5ª aula", inicio: "11:20", fim: "12:20" },
+      { nome: "6ª aula", inicio: "13:00", fim: "14:00" },
+      { nome: "7ª aula", inicio: "14:00", fim: "15:00" },
+      { nome: "8ª aula", inicio: "15:00", fim: "16:00" }
+    ];
+
+    const API_URL =
+      "https://script.google.com/a/macros/aluno.edu.pi.gov.br/s/AKfycby0CD3gkeM9qVuZIbSerPIGNMfvX8mcR3_QNQl24iG30Ga-kAvXQlhjjq0FmVTvhqsSVA/exec";
+
+    let reservasRemotas = [];
+    let manutencoesRemotas = [];
+    let requisicaoPendente = false;
+
+    const $ = id => document.getElementById(id);
+
+    function esc(valor) {
+      return String(valor ?? "").replace(/[&<>"']/g, caractere => {
+        const caracteres = {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+        };
+
+        return caracteres[caractere];
+      });
+    }
+
+    function apiGet(params = {}) {
+      return new Promise((resolve, reject) => {
+        const callback =
+          "agendaCallback_" +
+          Date.now() +
+          "_" +
+          Math.floor(Math.random() * 100000);
+
+        const script = document.createElement("script");
+        let finalizado = false;
+
+        const timer = setTimeout(() => {
+          finalizar(
+            new Error("Tempo esgotado ao consultar o servidor.")
+          );
+        }, 15000);
+
+        function finalizar(erro, dados) {
+          if (finalizado) return;
+
+          finalizado = true;
+          clearTimeout(timer);
+
+          delete window[callback];
+          script.remove();
+
+          if (erro) {
+            reject(erro);
+          } else {
+            resolve(dados);
+          }
+        }
+
+        window[callback] = dados => finalizar(null, dados);
+
+        script.onerror = () => {
+          finalizar(
+            new Error(
+              "Não foi possível conectar ao Apps Script."
+            )
+          );
+        };
+
+        const query = new URLSearchParams({
+          ...params,
+          callback,
+          _: Date.now()
+        });
+
+        script.src =
+          API_URL +
+          "?" +
+          query.toString();
+
+        document.body.appendChild(script);
+      });
+    }
+
+    async function apiPost(payload) {
+      if (requisicaoPendente) {
+        throw new Error(
+          "Aguarde a operação anterior terminar."
+        );
+      }
+
+      requisicaoPendente = true;
+
+      const requestId =
+        crypto.randomUUID
+          ? crypto.randomUUID()
+          : Date.now() + "_" + Math.random();
+
+      try {
+        const dados = new URLSearchParams();
+
+        dados.set(
+          "payload",
+          JSON.stringify({
+            ...payload,
+            requestId
+          })
+        );
+
+        await fetch(API_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: dados
+        });
+
+        for (let tentativa = 0; tentativa < 15; tentativa++) {
+          await new Promise(resolve => {
+            setTimeout(resolve, 700);
+          });
+
+          const resposta = await apiGet({
+            action: "consultarresultado",
+            id: requestId
+          });
+
+          if (resposta && !resposta.aguardando) {
+            if (resposta.ok === false) {
+              throw new Error(
+                resposta.error ||
+                "A operação não foi concluída."
+              );
+            }
+
+            return resposta;
+          }
+        }
+
+        throw new Error(
+          "O servidor demorou para confirmar a operação."
+        );
+
+      } finally {
+        requisicaoPendente = false;
+      }
+    }
+
+    async function carregarDados() {
+      try {
+        const dados = await apiGet({
+          action: "listar"
+        });
+
+        if (!dados || dados.ok === false) {
+          throw new Error(
+            dados?.error ||
+            "Não foi possível carregar os dados."
+          );
+        }
+
+        reservasRemotas =
+          Array.isArray(dados.reservas)
+            ? dados.reservas
+            : [];
+
+        manutencoesRemotas =
+          Array.isArray(dados.manutencoes)
+            ? dados.manutencoes
+            : [];
+
+        atualizar();
+
+      } catch (erro) {
+        console.error(erro);
+      }
+    }
+
+    function quebrados() {
+      const resultado = {};
+
+      Object.keys(INVENTARIO).forEach(recurso => {
+        resultado[recurso] = 0;
+      });
+
+      manutencoesRemotas.forEach(manutencao => {
+        if (!(manutencao.recurso in resultado)) return;
+
+        resultado[manutencao.recurso] +=
+          manutencao.acao === "quebrado"
+            ? Number(manutencao.quantidade || 0)
+            : -Number(manutencao.quantidade || 0);
+      });
+
+      Object.keys(resultado).forEach(recurso => {
+        resultado[recurso] = Math.max(
+          0,
+          Math.min(
+            INVENTARIO[recurso],
+            resultado[recurso]
+          )
+        );
+      });
+
+      return resultado;
+    }
+
+    function popularSelects() {
+      $("recurso").innerHTML =
+        '<option value="">Selecione</option>' +
+        Object.keys(INVENTARIO)
+          .map(recurso =>
+            `<option value="${esc(recurso)}">
+              ${esc(recurso)}
+            </option>`
+          )
+          .join("");
+
+      $("recursoManutencao").innerHTML =
+        Object.keys(INVENTARIO)
+          .map(recurso =>
+            `<option value="${esc(recurso)}">
+              ${esc(recurso)}
+            </option>`
+          )
+          .join("");
+
+      $("aula").innerHTML =
+        '<option value="">Selecione</option>' +
+        AULAS.map((aula, indice) =>
+          `<option value="${indice}">
+            ${aula.nome} — ${aula.inicio} às ${aula.fim}
+          </option>`
+        ).join("");
+
+      $("quadroAulas").innerHTML =
+        AULAS.map(aula =>
+          `<div class="slot">
+            <strong>${aula.nome}</strong>
+            <small>
+              ${aula.inicio} às ${aula.fim}
+            </small>
+          </div>`
+        ).join("");
+    }
+
+    function atualizarRecursos() {
+      const itensQuebrados = quebrados();
+
+      $("painelRecursos").innerHTML =
+        Object.keys(INVENTARIO)
+          .map(recurso => `
+            <div class="resource">
+              <strong>${esc(recurso)}</strong>
+
+              <div class="qty">
+                ${INVENTARIO[recurso] - itensQuebrados[recurso]}
+                <small>disponível</small>
+              </div>
+
+              <div class="muted">
+                ${itensQuebrados[recurso]} em manutenção
+              </div>
+            </div>
+          `)
+          .join("");
+    }
+
+    function atualizar() {
+      const funcionario =
+        $("perfil").value === "funcionario";
+
+      const nome =
+        $("nomeUsuario").value.trim();
+
+      $("areaReserva").classList.toggle(
+        "hidden",
+        funcionario
+      );
+
+      $("areaDirecao").classList.toggle(
+        "hidden",
+        !funcionario
+      );
+
+      $("tituloLista").textContent =
+        funcionario
+          ? "Monitoramento de agendamentos"
+          : "Meus agendamentos";
+
+      let reservas =
+        reservasRemotas.slice();
+
+      const filtro =
+        $("filtroData").value;
+
+      if (filtro) {
+        reservas = reservas.filter(reserva =>
+          reserva.data === filtro
+        );
+      }
+
+      if (!funcionario) {
+        reservas = reservas.filter(reserva =>
+          String(reserva.professor || "")
+            .toLowerCase() ===
+          nome.toLowerCase()
+        );
+      }
+
+      reservas.sort((a, b) =>
+        String(a.data + a.inicio)
+          .localeCompare(
+            String(b.data + b.inicio)
+          )
+      );
+
+      if (!reservas.length) {
+        $("listaReservas").innerHTML =
+          '<p class="muted">Nenhum agendamento encontrado.</p>';
+
+      } else {
+        $("listaReservas").innerHTML =
+          reservas.map(reserva => {
+            const aula =
+              AULAS[Number(reserva.aula)] ||
+              {
+                nome: "Aula",
+                inicio: reserva.inicio || "",
+                fim: ""
+              };
+
+            const status =
+              String(reserva.status || "Pendente");
+
+            const classe =
+              status.toLowerCase();
+
+            let botoes = "";
+
+            if (
+              funcionario &&
+              status === "Pendente"
+            ) {
+              botoes += `
+                <button
+                  class="primary"
+                  onclick="statusReserva('${reserva.id}', 'Aprovada')"
+                >
+                  Aprovar
+                </button>
+
+                <button
+                  class="danger"
+                  onclick="statusReserva('${reserva.id}', 'Recusada')"
+                >
+                  Recusar
+                </button>
+              `;
+            }
+
+            if (
+              !funcionario &&
+              status === "Pendente" &&
+              String(reserva.professor || "")
+                .toLowerCase() ===
+              nome.toLowerCase()
+            ) {
+              botoes += `
+                <button
+                  class="danger"
+                  onclick="cancelarReserva('${reserva.id}')"
+                >
+                  Cancelar
+                </button>
+              `;
+            }
+
+            if (
+              funcionario &&
+              ["Pendente", "Aprovada"].includes(status)
+            ) {
+              botoes += `
+                <button
+                  class="secondary"
+                  onclick="statusReserva('${reserva.id}', 'Cancelada')"
+                >
+                  Cancelar
+                </button>
+              `;
+            }
+
+            const dataFormatada =
+              String(reserva.data || "")
+                .split("-")
+                .reverse()
+                .join("/");
+
+            return `
+              <article class="booking">
+
+                <div>
+                  <h3>
+                    ${esc(reserva.recurso)}
+                    —
+                    ${esc(dataFormatada)}
+                  </h3>
+
+                  <p>
+                    <b>Horário:</b>
+                    ${esc(aula.nome)},
+                    ${esc(aula.inicio)} às
+                    ${esc(aula.fim)}
+                    ·
+                    <b>Quantidade:</b>
+                    ${Number(reserva.quantidade) || 0}
+                  </p>
+
+                  <p>
+                    <b>Turma:</b>
+                    ${esc(reserva.turma || "")}
+                    ·
+                    <b>Professor(a):</b>
+                    ${esc(reserva.professor || "")}
+                  </p>
+                </div>
+
+                <div class="actions">
+                  <span class="status ${classe}">
+                    ${esc(status)}
+                  </span>
+
+                  ${botoes}
+                </div>
+
+              </article>
+            `;
+          }).join("");
+      }
+
+      if (funcionario) {
+        const historico =
+          manutencoesRemotas
+            .slice()
+            .sort((a, b) =>
+              String(b.quando || "")
+                .localeCompare(
+                  String(a.quando || "")
+                )
+            );
+
+        $("historicoManutencao").innerHTML =
+          historico.length
+            ? historico.map(manutencao => `
+                <div class="booking">
+                  <div>
+                    <b>
+                      ${esc(manutencao.recurso)}
+                    </b>
+
+                    <p>
+                      ${esc(manutencao.acao)}
+                      ·
+                      ${Number(manutencao.quantidade) || 0}
+                      unidade(s)
+                    </p>
+
+                    <p>
+                      ${esc(manutencao.motivo || "")}
+                    </p>
+
+                    <p>
+                      Responsável:
+                      ${esc(manutencao.responsavel || "")}
+                    </p>
+                  </div>
+                </div>
+              `).join("")
+            : '<p class="muted">Nenhum registro de manutenção.</p>';
+      }
+
+      atualizarRecursos();
+    }
+
+    async function statusReserva(id, status) {
+      try {
+        await apiPost({
+          action: "alterarStatus",
+          id,
+          status
+        });
+
+        await carregarDados();
+
+      } catch (erro) {
+        alert(erro.message);
+      }
+    }
+
+    async function cancelarReserva(id) {
+      const professor =
+        $("nomeUsuario").value.trim();
+
+      try {
+        await apiPost({
+          action: "cancelarReserva",
+          id,
+          professor
+        });
+
+        await carregarDados();
+
+      } catch (erro) {
+        alert(erro.message);
+      }
+    }
+
+    $("formReserva").addEventListener(
+      "submit",
+      async evento => {
+        evento.preventDefault();
+
+        const professor =
+          $("nomeUsuario").value.trim();
+
+        const recurso =
+          $("recurso").value;
+
+        const data =
+          $("data").value;
+
+        const aula =
+          Number($("aula").value);
+
+        const quantidade =
+          Number($("quantidade").value);
+
+        const mensagem =
+          $("mensagem");
+
+        mensagem.textContent = "";
+
+        if (!professor) {
+          mensagem.textContent =
+            "Informe seu nome.";
+          return;
+        }
+
+        if (
+          !recurso ||
+          !data ||
+          !AULAS[aula]
+        ) {
+          mensagem.textContent =
+            "Preencha todos os campos obrigatórios.";
+          return;
+        }
+
+        const reserva = {
+          id:
+            crypto.randomUUID
+              ? crypto.randomUUID()
+              : String(Date.now()),
+
+          professor,
+          recurso,
+          data,
+          aula,
+          inicio: AULAS[aula].inicio,
+          quantidade,
+          turma: $("turma").value,
+          observacao:
+            $("observacao").value.trim(),
+          criado:
+            new Date().toISOString()
+        };
+
+        try {
+          mensagem.textContent =
+            "Enviando solicitação...";
+
+          await apiPost({
+            action: "criarReserva",
+            reserva
+          });
+
+          $("formReserva").reset();
+          $("quantidade").value = 1;
+
+          mensagem.textContent =
+            "Solicitação enviada com sucesso.";
+
+          await carregarDados();
+
+        } catch (erro) {
+          mensagem.textContent =
+            erro.message;
+        }
+      }
+    );
+
+    $("formManutencao").addEventListener(
+      "submit",
+      async evento => {
+        evento.preventDefault();
+
+        const manutencao = {
+          id: String(Date.now()),
+          recurso:
+            $("recursoManutencao").value,
+          acao:
+            $("acaoManutencao").value,
+          quantidade:
+            Number($("qtdManutencao").value),
+          motivo:
+            $("motivoManutencao").value.trim(),
+          responsavel:
+            $("nomeUsuario").value.trim() ||
+            "Funcionário",
+          quando:
+            new Date().toISOString()
+        };
+
+        const mensagem =
+          $("msgManutencao");
+
+        try {
+          mensagem.textContent =
+            "Registrando...";
+
+          await apiPost({
+            action: "registrarManutencao",
+            manutencao
+          });
+
+          $("formManutencao").reset();
+          $("qtdManutencao").value = 1;
+
+          mensagem.textContent =
+            "Manutenção registrada.";
+
+          await carregarDados();
+
+        } catch (erro) {
+          mensagem.textContent =
+            erro.message;
+        }
+      }
+    );
+
+    $("formEntrada").addEventListener(
+      "submit",
+      evento => {
+        evento.preventDefault();
+
+        const nome =
+          $("nomeEntrada").value.trim();
+
+        if (!nome) {
+          $("erroEntrada").textContent =
+            "Informe seu nome.";
+          return;
+        }
+
+        $("perfil").value =
+          $("tipoEntrada").value;
+
+        $("nomeUsuario").value =
+          nome;
+
+        $("telaEntrada").classList.add(
+          "hidden"
+        );
+
+        $("sistema").classList.remove(
+          "hidden"
+        );
+
+        atualizar();
+      }
+    );
+
+    $("sairSistema").addEventListener(
+      "click",
+      () => {
+        $("nomeUsuario").value = "";
+        $("nomeEntrada").value = "";
+
+        $("sistema").classList.add(
+          "hidden"
+        );
+
+        $("telaEntrada").classList.remove(
+          "hidden"
+        );
+
+        $("tipoEntrada").value =
+          "professor";
+
+        atualizar();
+      }
+    );
+
+    $("perfil").addEventListener(
+      "change",
+      atualizar
+    );
+
+    $("nomeUsuario").addEventListener(
+      "input",
+      atualizar
+    );
+
+    $("filtroData").addEventListener(
+      "change",
+      atualizar
+    );
+
+    popularSelects();
+    atualizar();
+    carregarDados();
+
+    setInterval(
+      carregarDados,
+      30000
+    );
+  </script>
+
+</body>
+</html>
