@@ -1,0 +1,363 @@
+
+:root {
+    --blue: #2457a7;
+    --navy: #183d78;
+    --light-blue: #eaf1ff;
+    --bg: #f3f6fb;
+    --ink: #243247;
+    --muted: #68768a;
+    --line: #dce4ef;
+    --green: #18864b;
+    --green-bg: #e7f6ed;
+    --amber: #a65d00;
+    --amber-bg: #fff4df;
+    --red: #b42318;
+    --red-bg: #fff0ef;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+/* CABEÇALHO */
+
+header {
+    background: linear-gradient(115deg, var(--navy), var(--blue));
+    color: white;
+    padding: 25px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.12);
+}
+
+header h1 {
+    margin: 0 0 6px;
+    font-size: 27px;
+}
+
+header p {
+    margin: 0;
+    opacity: .9;
+}
+
+/* CONTEÚDO */
+
+main {
+    width: min(1180px, calc(100% - 28px));
+    margin: 22px auto 40px;
+}
+
+.card,
+.panel {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 3px 12px rgba(30,55,90,.06);
+}
+
+h2 {
+    margin: 0 0 15px;
+    color: var(--navy);
+    font-size: 20px;
+}
+
+h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+}
+
+/* FORMULÁRIOS */
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: white;
+    color: var(--ink);
+    outline: none;
+    transition: border .2s, box-shadow .2s;
+    margin-bottom: 14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(36,87,167,.12);
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    border: none;
+    border-radius: 8px;
+    padding: 11px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform .15s, opacity .15s;
+}
+
+button:hover {
+    opacity: .92;
+}
+
+button:active {
+    transform: scale(.98);
+}
+
+.primary {
+    background: var(--blue);
+    color: white;
+}
+
+.secondary {
+    background: #e9eef7;
+    color: var(--navy);
+}
+
+.danger {
+    background: var(--red-bg);
+    color: var(--red);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ORGANIZAÇÃO */
+
+.field {
+    flex: 1 1 190px;
+}
+
+.topbar {
+    display: flex;
+    gap: 12px;
+    align-items: end;
+    flex-wrap: wrap;
+}
+
+.grid-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 14px;
+}
+
+.wide {
+    grid-column: 1 / -1;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter {
+    max-width: 190px;
+}
+
+.muted,
+.help {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.message {
+    margin-top: 12px;
+    min-height: 20px;
+    font-weight: bold;
+}
+
+/* RECURSOS */
+
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px,1fr));
+    gap: 12px;
+}
+
+.resource {
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    padding: 14px;
+    background: #fafcff;
+}
+
+.resource .qty {
+    margin-top: 8px;
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--navy);
+}
+
+.resource .qty small {
+    font-size: 12px;
+    font-weight: normal;
+    color: var(--muted);
+}
+
+/* AGENDAMENTOS */
+
+.list {
+    display: grid;
+    gap: 11px;
+}
+
+.booking {
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--blue);
+    border-radius: 10px;
+    padding: 14px;
+    background: white;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 15px;
+}
+
+.booking p {
+    margin: 5px 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.actions {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.actions button {
+    padding: 8px 11px;
+    font-size: 13px;
+}
+
+.status {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    background: var(--amber-bg);
+    color: var(--amber);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status.aprovada {
+    background: var(--green-bg);
+    color: var(--green);
+}
+
+.status.recusada,
+.status.cancelada {
+    background: var(--red-bg);
+    color: var(--red);
+}
+
+/* MANUTENÇÃO */
+
+.notice {
+    background: #fff8e8;
+    border: 1px solid #f0d9a8;
+    border-radius: 9px;
+    padding: 12px;
+    color: #754800;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.history-title {
+    margin-top: 22px;
+}
+
+/* HORÁRIOS */
+
+.slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(145px,1fr));
+    gap: 9px;
+}
+
+.slot {
+    padding: 11px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: #fafcff;
+}
+
+.slot strong {
+    display: block;
+}
+
+.slot small {
+    color: var(--muted);
+}
+
+/* ENTRADA */
+
+.entrada {
+    max-width: 620px;
+    margin: 35px auto;
+    width: calc(100% - 28px);
+}
+
+.entrada button {
+    margin-top: 5px;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 650px) {
+
+    .grid-form {
+        grid-template-columns: 1fr;
+    }
+
+    .booking {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        justify-content: flex-start;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    main {
+        width: calc(100% - 20px);
+    }
+
+    .filter {
+        max-width: 100%;
+    }
+
+}
